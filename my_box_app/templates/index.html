@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale =1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+        <link rel="stylesheet"  type= "text/css" href="{%  static  'css/style.css'  %}">
+        <title>Box</title>
+    </head>
+    <body>
+        <div class="container border border-secondary pb-4 mt-4" style="width: 22rem;">
+            <div class="accordion mt-4" id="accordionExample">
+                {% if messages %}
+                <ul class="messages h5" style="list-style-type: none">    
+                    {% for message in messages %}    
+                    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+                    {% endfor %}
+                </ul>
+                {% endif %}  
+                <h1 class="text-success"> Welcome!</h1>
+                <div class="card justify-content-center">
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                        <form class="" action="/login" method="POST">
+                            {% csrf_token %}
+                            <div class="login ml-3 mt-4">
+                                <label class="label" for="username">Username:</label>
+                                <input type="text" name="username" id="username">
+                                <label class="label" for="password">Password:</label>
+                                <input type="text" name="password" id="password">
+                                </br>
+                                <button class="mt-3 mb-3 btn btn-info">Enter Here</button> 
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header m-0 text-center" id="headingTwo">
+                        <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        New Account
+                        </button>
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"><a class="" href='/index'>
+                        Login
+                        </a></button>
+                        </h2>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                        <form action="/register" method="POST">
+                            {% csrf_token %}
+                            <div class="register ml-3 mt-4">
+                                <label class="label" for="first_name">First Name:</label>
+                                <input type="text" name="first_name" id="first_name" placeholder="First Name">  
+                                <label class="label" for="last_name">Last Name:</label>
+                                <input type="text" name="last_name" id="last_name" placeholder="Last Name">     
+                                <label class="label" for="username">Username:</label>
+                                <input type="text" name="username" id="usename" placeholder="Username">
+                                <label class="label" for="password">Password:</label>
+                                <input type="text" name="password" id="password" placeholder="Password">
+                                <label class="label" for="confirm_password">Confirm Password:</label>
+                                <input class="m-2" type="text" name="confirm_password" id="confirm_password" placeholder="Confirm Password">
+                                <br>
+                                <button class="mt-3 mb-3 text center btn btn-info">Register</button>
+                            </div>  
+                        </form>
+                    </div> 
+                </div>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+    </body>
+</html>
